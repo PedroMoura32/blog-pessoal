@@ -1,6 +1,6 @@
 # Radar
 
-Caderno pessoal de tecnologia e IA. Site estático (HTML, CSS e JS puros, sem build), alimentado por uma tarefa agendada que pesquisa os temas todo dia às 6h e grava as matérias como arquivos JSON.
+Caderno pessoal de IA, Python e dados. Site estático (HTML, CSS e JS puros, sem build), alimentado por uma tarefa agendada que pesquisa os temas todo dia às 6h e grava as matérias como arquivos JSON.
 
 ## Estrutura
 
@@ -18,7 +18,7 @@ data/
   posts/<tema>/   uma matéria por arquivo AAAA-MM-DD-slug.json
 scripts/rebuild_index.py   valida os posts e gera o índice
 CLAUDE.md         contrato do agente que roda todo dia
-BACKLOG.md        ideias para depois (ex.: seção de agenda)
+BACKLOG.md        ideias para depois
 ```
 
 ## Ver no computador

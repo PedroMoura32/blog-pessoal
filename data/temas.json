@@ -4,7 +4,11 @@
     "nome": "Claude: estudos",
     "descricao": "Como tirar o máximo do Claude no plano Pro: Skills, Projects, memória, prompts e novidades do produto.",
     "estilo": "aprendizado",
-    "formatos": ["mini-aula", "reportagem", "em-1-minuto"],
+    "formatos": [
+      "mini-aula",
+      "reportagem",
+      "em-1-minuto"
+    ],
     "validade_dias": 45,
     "janela_horas": 168,
     "max_posts_por_dia": 1,
@@ -29,7 +33,11 @@
     "nome": "Notícias de IA",
     "descricao": "O que saiu de novo em inteligência artificial: modelos, produtos, pesquisa e regulação.",
     "estilo": "noticia",
-    "formatos": ["reportagem", "em-1-minuto", "radar"],
+    "formatos": [
+      "reportagem",
+      "em-1-minuto",
+      "radar"
+    ],
     "validade_dias": 14,
     "janela_horas": 26,
     "max_posts_por_dia": 3,
@@ -49,6 +57,67 @@
       "TechCrunch",
       "Tecnoblog",
       "Canaltech"
+    ]
+  },
+  {
+    "slug": "python",
+    "nome": "Python",
+    "descricao": "Técnicas, bibliotecas e novidades da linguagem, com exemplos que dá para rodar na hora.",
+    "estilo": "aprendizado",
+    "formatos": [
+      "mini-aula",
+      "em-1-minuto",
+      "reportagem"
+    ],
+    "validade_dias": 45,
+    "janela_horas": 168,
+    "max_posts_por_dia": 1,
+    "cor": "#1FB58F",
+    "ativo": true,
+    "consultas": [
+      "Python novidades versão",
+      "Python dicas e boas práticas",
+      "PEP aprovada Python",
+      "pandas polars novidades",
+      "Python automação exemplo prático"
+    ],
+    "fontes_preferidas": [
+      "docs.python.org",
+      "python.org/downloads",
+      "realpython.com",
+      "peps.python.org",
+      "pandas.pydata.org"
+    ]
+  },
+  {
+    "slug": "data-analytics",
+    "nome": "Data Analytics",
+    "descricao": "Análise de dados no dia a dia: SQL, Power BI, Excel, visualização e boas práticas.",
+    "estilo": "aprendizado",
+    "formatos": [
+      "mini-aula",
+      "em-1-minuto",
+      "reportagem",
+      "radar"
+    ],
+    "validade_dias": 45,
+    "janela_horas": 168,
+    "max_posts_por_dia": 1,
+    "cor": "#E8505B",
+    "ativo": true,
+    "consultas": [
+      "análise de dados dicas SQL",
+      "Power BI novidades",
+      "visualização de dados boas práticas",
+      "data analytics ferramentas novidades",
+      "DAX Power Query técnica"
+    ],
+    "fontes_preferidas": [
+      "learn.microsoft.com",
+      "powerbi.microsoft.com/blog",
+      "towardsdatascience.com",
+      "datawrapper.de",
+      "kaggle.com"
     ]
   }
 ]
