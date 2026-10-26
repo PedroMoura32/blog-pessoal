@@ -5,11 +5,11 @@ Caderno pessoal de tecnologia e IA. Site estático (HTML, CSS e JS puros, sem bu
 ## Estrutura
 
 ```
-index.html        capa de jornal (manchete, "em 1 minuto", seções por tema, busca)
+index.html        capa de jornal (manchete, cartões "Em 1 minuto" que deslizam, seções por tema, busca)
 tema.html         página de um tema (?t=slug), com filtro por formato e arquivadas
 post.html         página de uma matéria (?t=slug&id=...)
-css/style.css     todo o visual
-js/               app.js (utilitários), capa.js, tema.js, post.js
+css/style.css     todo o visual (celular: barra de temas fixa embaixo; transições entre páginas)
+js/               app.js (utilitários e capas geradas em SVG), capa.js, tema.js, post.js
 fonts/            Bricolage Grotesque e Source Serif 4 (licença OFL)
 data/
   site.json       título e subtítulo do blog
@@ -18,6 +18,7 @@ data/
   posts/<tema>/   uma matéria por arquivo AAAA-MM-DD-slug.json
 scripts/rebuild_index.py   valida os posts e gera o índice
 CLAUDE.md         contrato do agente que roda todo dia
+BACKLOG.md        ideias para depois (ex.: seção de agenda)
 ```
 
 ## Ver no computador
@@ -47,3 +48,7 @@ Os três posts marcados com `"exemplo": true` só servem para ver o layout. Apag
 ```
 python3 scripts/rebuild_index.py --remover-exemplos
 ```
+
+## Capas geradas
+
+Cada matéria ganha uma capa em SVG desenhada pelo navegador a partir do `id` do post e da cor do tema. O mesmo post sempre gera o mesmo desenho, e nenhuma imagem de terceiros é usada.

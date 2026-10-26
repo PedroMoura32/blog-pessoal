@@ -73,6 +73,19 @@ def validar_temas(temas, erros):
     return slugs
 
 
+def limpar_marcacao(txt):
+    txt = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", txt)
+    return txt.replace("**", "").replace("`", "").strip()
+
+
+def pontos_do_post(corpo):
+    """Primeiros itens da primeira lista do post, sem marcação (usados na capa)."""
+    for b in corpo:
+        if isinstance(b, dict) and b.get("tipo") in ("ul", "ol"):
+            return [limpar_marcacao(x)[:140] for x in b.get("itens", [])[:3] if isinstance(x, str)]
+    return []
+
+
 def texto_do_bloco(b):
     if b.get("tipo") in ("ul", "ol"):
         return " ".join(b.get("itens", []))
@@ -141,7 +154,7 @@ def validar_post(p, caminho, tema, hoje, erros):
     if dd is None or not isinstance(titulo, str) or not isinstance(resumo, str):
         return None
     palavras = len(re.findall(r"\w+", " ".join(texto_do_bloco(b) for b in corpo if isinstance(b, dict))))
-    return {
+    item = {
         "id": caminho.stem,
         "tema": tema["slug"],
         "titulo": titulo.strip(),
@@ -153,6 +166,9 @@ def validar_post(p, caminho, tema, hoje, erros):
         "exemplo": bool(p.get("exemplo", False)),
         "tags": tags[:8],
     }
+    if formato == "em-1-minuto":
+        item["pontos"] = pontos_do_post(corpo)
+    return item
 
 
 def main():

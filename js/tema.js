@@ -22,6 +22,7 @@
     const estado = { formato: "todos", arquivadas: false };
 
     const capa = h("header", { class: "tema-capa", style: estiloTema(tema) },
+      arte(`tema-${tema.slug}`),
       h("p", { class: "tema-estilo" }, tema.estilo === "noticia" ? "Notícias" : "Aprendizado"),
       h("h1", {}, tema.nome),
       h("p", { class: "tema-desc" }, tema.descricao),

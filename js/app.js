@@ -6,6 +6,7 @@ const FORMATOS = { "reportagem": "Reportagem", "em-1-minuto": "Em 1 minuto", "mi
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 const RE_SLUG = /^[a-z0-9][a-z0-9-]*$/;
 const RE_COR = /^#[0-9a-fA-F]{6}$/;
+const NS_SVG = "http://www.w3.org/2000/svg";
 
 function h(tag, attrs, ...filhos) {
   const el = document.createElement(tag);
@@ -19,6 +20,13 @@ function h(tag, attrs, ...filhos) {
     if (f == null || f === false) continue;
     el.append(f.nodeType ? f : document.createTextNode(String(f)));
   }
+  return el;
+}
+
+function s(tag, attrs, ...filhos) {
+  const el = document.createElementNS(NS_SVG, tag);
+  for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
+  el.append(...filhos.flat().filter(Boolean));
   return el;
 }
 
@@ -84,6 +92,96 @@ function estiloTema(tema) {
   return `--tema:${cor};--tema-ink:${corTexto(cor)}`;
 }
 
+/* ---------- capas geradas: SVG determinístico a partir do id ----------
+   O mesmo id sempre gera o mesmo desenho. As cores vêm do tema (variáveis CSS),
+   então a arte acompanha o bloco onde estiver. */
+
+function aleatorio(texto) {
+  let a1 = 1779033703 ^ texto.length;
+  for (let i = 0; i < texto.length; i++) {
+    a1 = Math.imul(a1 ^ texto.charCodeAt(i), 3432918353);
+    a1 = (a1 << 13) | (a1 >>> 19);
+  }
+  let a = (Math.imul(a1 ^ (a1 >>> 16), 2246822507) ^ Math.imul(a1 ^ (a1 >>> 13), 3266489909)) >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const TINTA = "var(--tema-ink)";
+const MEIO = "color-mix(in srgb, var(--tema-ink) 38%, var(--tema))";
+const SUAVE = "color-mix(in srgb, var(--tema-ink) 16%, var(--tema))";
+const CLARO = "color-mix(in srgb, #ffffff 60%, var(--tema))";
+const preenche = (cor) => `fill:${cor}`;
+const traco = (cor, w) => `fill:none;stroke:${cor};stroke-width:${w}`;
+
+const MOTIVOS = [
+  function orbitas(r) {
+    const cx = 220 + r() * 180, cy = r() * 200;
+    const els = [
+      s("circle", { cx, cy, r: 170, style: traco(TINTA, 3) }),
+      s("circle", { cx, cy, r: 125, style: preenche(SUAVE) }),
+      s("circle", { cx, cy, r: 82, style: traco(TINTA, 3) }),
+      s("circle", { cx, cy, r: 40, style: preenche(TINTA) }),
+    ];
+    for (let i = 0; i < 6; i++) els.push(s("circle", { cx: r() * 400, cy: r() * 300, r: 4 + r() * 6, style: preenche(CLARO) }));
+    return els;
+  },
+  function blocos(r) {
+    const cores = [TINTA, MEIO, SUAVE, CLARO], els = [];
+    for (let y = 0; y < 6; y++) for (let x = 0; x < 8; x++) {
+      if (r() < 0.4) els.push(s("rect", { x: x * 50, y: y * 50, width: 50, height: 50, style: preenche(cores[Math.floor(r() * 4)]) }));
+    }
+    for (let i = 0; i < 3; i++) els.push(s("circle", { cx: 25 + Math.floor(r() * 8) * 50, cy: 25 + Math.floor(r() * 6) * 50, r: 25, style: preenche(TINTA) }));
+    return els;
+  },
+  function ondas(r) {
+    const els = [];
+    for (let i = 0; i < 6; i++) {
+      const y = 30 + i * 50, a = 15 + r() * 35, p = r() * 60;
+      els.push(s("path", {
+        d: `M0 ${y} C 90 ${y - a} 150 ${y + a} 220 ${y + p / 3} S 340 ${y - a} 400 ${y}`,
+        style: traco(i === 2 ? MEIO : TINTA, i === 2 ? 14 : 3) + ";stroke-linecap:round",
+      }));
+    }
+    els.push(s("circle", { cx: 60 + r() * 280, cy: 60 + r() * 180, r: 34 + r() * 26, style: preenche(CLARO) }));
+    return els;
+  },
+  function quartos(r) {
+    const cores = [TINTA, MEIO, SUAVE, CLARO], els = [];
+    for (let j = 0; j < 3; j++) for (let i = 0; i < 4; i++) {
+      const x = i * 100, y = j * 100, cor = cores[Math.floor(r() * 4)], k = Math.floor(r() * 5);
+      const caminhos = [
+        `M${x} ${y}h100a100 100 0 0 1-100 100z`,
+        `M${x + 100} ${y}v100a100 100 0 0 1-100-100z`,
+        `M${x + 100} ${y + 100}h-100a100 100 0 0 1 100-100z`,
+        `M${x} ${y + 100}v-100a100 100 0 0 1 100 100z`,
+      ];
+      els.push(k < 4 ? s("path", { d: caminhos[k], style: preenche(cor) }) : s("circle", { cx: x + 50, cy: y + 50, r: 50, style: preenche(cor) }));
+    }
+    return els;
+  },
+  function raios(r) {
+    const ox = r() < 0.5 ? 0 : 400, oy = r() < 0.5 ? 0 : 300, els = [];
+    const base = Math.atan2(150 - oy, 200 - ox);
+    for (let i = -7; i <= 7; i++) {
+      const ang = base + i * 0.09, forte = i % 3 === 0;
+      els.push(s("line", { x1: ox, y1: oy, x2: ox + Math.cos(ang) * 600, y2: oy + Math.sin(ang) * 600, style: `stroke:${forte ? TINTA : MEIO};stroke-width:${forte ? 3 : 2}` }));
+    }
+    els.push(s("circle", { cx: ox, cy: oy, r: 70 + r() * 40, style: preenche(CLARO) }), s("circle", { cx: ox, cy: oy, r: 34, style: preenche(TINTA) }));
+    return els;
+  },
+];
+
+function arte(id) {
+  const r = aleatorio(id);
+  const motivo = MOTIVOS[Math.floor(r() * MOTIVOS.length)];
+  return s("svg", { class: "arte", viewBox: "0 0 400 300", preserveAspectRatio: "xMidYMid slice", "aria-hidden": "true", focusable: "false" }, ...motivo(r));
+}
+
 /* ---------- texto seguro ---------- */
 
 function urlSegura(u) {
@@ -99,15 +197,15 @@ function inline(txt) {
   let i = 0, m;
   while ((m = re.exec(txt))) {
     if (m.index > i) saida.push(txt.slice(i, m.index));
-    const s = m[0];
-    if (s.startsWith("**")) saida.push(h("strong", {}, s.slice(2, -2)));
-    else if (s.startsWith("`")) saida.push(h("code", {}, s.slice(1, -1)));
+    const t = m[0];
+    if (t.startsWith("**")) saida.push(h("strong", {}, t.slice(2, -2)));
+    else if (t.startsWith("`")) saida.push(h("code", {}, t.slice(1, -1)));
     else {
-      const [, rotulo, url] = s.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      const [, rotulo, url] = t.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
       const seguro = urlSegura(url);
       saida.push(seguro ? h("a", { href: seguro, target: "_blank", rel: "noopener noreferrer" }, rotulo) : rotulo);
     }
-    i = m.index + s.length;
+    i = m.index + t.length;
   }
   if (i < txt.length) saida.push(txt.slice(i));
   return saida;
@@ -147,9 +245,11 @@ function etiquetaTema(tema) {
   return h("span", { class: "tema-tag" }, h("i", { class: "quadrado" }), tema.nome);
 }
 
+function miniatura(p) { return h("span", { class: "miniatura" }, arte(p.id)); }
+
 function linha(p, tema, arquivada) {
   return h("a", { class: "linha" + (arquivada ? " arquivada" : ""), href: linkPost(p), style: estiloTema(tema) },
-    h("span", { class: "linha-data" }, dataCurta(p.data)),
+    miniatura(p),
     h("span", { class: "linha-corpo" },
       etiquetaTema(tema),
       h("strong", { class: "linha-titulo" }, p.titulo),
@@ -170,7 +270,7 @@ function montarTopo(site, temas, ativo) {
       h("a", { class: "marca", href: "index.html", "aria-label": `${site.titulo}, página inicial` }, site.titulo),
       h("p", { class: "marca-sub" }, site.subtitulo)),
     h("nav", { class: "nav", "aria-label": "Temas" },
-      h("a", { href: "index.html", "aria-current": ativo === "capa" ? "page" : null }, "Capa"),
+      h("a", { href: "index.html", "aria-current": ativo === "capa" ? "page" : null }, h("i", { class: "quadrado capa-quadrado" }), "Capa"),
       temas.filter((t) => t.ativo).map((t) =>
         h("a", { href: `tema.html?t=${t.slug}`, style: estiloTema(t), "aria-current": ativo === t.slug ? "page" : null },
           h("i", { class: "quadrado" }), t.nome))));
