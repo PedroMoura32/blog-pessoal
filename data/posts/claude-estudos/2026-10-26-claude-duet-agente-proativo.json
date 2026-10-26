@@ -1,0 +1,24 @@
+{
+  "titulo": "Claude Duet: o que muda quando o agente fala primeiro",
+  "resumo": "A Anthropic abriu em 21 de outubro uma prévia do Claude Duet para assinantes Pro e Max. Entender a diferença entre agente reativo e proativo ajuda a decidir o que delegar.",
+  "formato": "mini-aula",
+  "data": "2026-10-26",
+  "destaque": false,
+  "tags": ["claude", "duet", "agentes", "pro"],
+  "corpo": [
+    { "tipo": "p", "texto": "Quem usa o Claude no plano Pro está acostumado a abrir o chat e perguntar. Em 21 de outubro de 2026, a Anthropic anunciou o Claude Duet, uma prévia de pesquisa em que o Claude passa a avisar você sobre o que pede atenção. Vale entender a ideia antes de entrar na lista de espera." },
+    { "tipo": "h2", "texto": "O conceito: reativo x proativo" },
+    { "tipo": "p", "texto": "No chat comum, o agente é **reativo**: só age quando você escreve. No Duet, ele é **proativo**. Segundo o Thurrott e o iPhone in Canada, ele manda um resumo curto todas as manhãs com o mais importante dos apps conectados e, durante o dia, só envia mensagem quando algo exige atenção." },
+    { "tipo": "p", "texto": "Também aceita tarefas, como agendar reuniões ou montar painéis e previsões de vendas. Segundo o iPhone in Canada, roda numa máquina virtual própria, com navegador, e usa a memória, as skills e os apps conectados da sua conta Claude. Antes de enviar mensagens, pagar, assinar ou apagar algo, mostra o que pretende fazer e espera sua aprovação." },
+    { "tipo": "h2", "texto": "Exemplo prático: o que vale delegar" },
+    { "tipo": "p", "texto": "Mesmo sem acesso ao Duet, dá para treinar o raciocínio em qualquer conversa com o Claude. Descreva a tarefa como uma regra de aviso, com critério de urgência e o que precisa de aprovação:" },
+    { "tipo": "code", "texto": "Todo dia, olhe minha agenda e meus e-mails.\nMe avise só se houver:\n- reunião com conflito de horário;\n- e-mail de cliente sem resposta há mais de 2 dias.\nNunca envie nada em meu nome: me mostre o rascunho antes." },
+    { "tipo": "callout", "titulo": "Para levar", "texto": "Agente proativo funciona melhor com critérios claros de urgência e com aprovação para ações importantes. A própria Anthropic admite que o app ainda pode interpretar mal o que é urgente, então comece com tarefas de baixo risco." },
+    { "tipo": "callout", "titulo": "Antes de contar com ele", "texto": "É uma prévia de pesquisa, com lista de espera. Segundo o iPhone in Canada, por enquanto só para assinantes Pro e Max dos EUA, e as verificações em segundo plano contam para o limite de uso do plano. O Thurrott diz que o Duet se apoia no Opus 5.5; esse detalhe só aparece nessa fonte." }
+  ],
+  "fontes": [
+    { "titulo": "Thurrott: Anthropic Announces Claude Duet, a Personal AI Agent", "url": "https://thurrott.com/a-i/anthropic/343121/anthropic-announces-claude-duet-a-personal-ai-agent" },
+    { "titulo": "iPhone in Canada: Claude Duet Is Anthropic's Answer to Muse, Grok Bot and OpenAI Dots", "url": "https://iphoneincanada.ca/2026/10/21/claude-duet-proactive-ai-agent-app" },
+    { "titulo": "Releasebot: atualizações do Claude", "url": "https://releasebot.io/updates/anthropic/claude" }
+  ]
+}
