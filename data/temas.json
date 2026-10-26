@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "claude-estudos",
+    "nome": "Claude: estudos",
+    "descricao": "Como tirar o máximo do Claude no plano Pro: Skills, Projects, memória, prompts e novidades do produto.",
+    "estilo": "aprendizado",
+    "formatos": ["mini-aula", "reportagem", "em-1-minuto"],
+    "validade_dias": 45,
+    "janela_horas": 168,
+    "max_posts_por_dia": 1,
+    "cor": "#6B46FF",
+    "ativo": true,
+    "consultas": [
+      "Claude Pro dicas de uso",
+      "Claude Skills como criar",
+      "Claude Projects e memória",
+      "Claude Code novidades",
+      "prompting Claude boas práticas"
+    ],
+    "fontes_preferidas": [
+      "anthropic.com/news",
+      "support.claude.com",
+      "docs.claude.com",
+      "claude.com/blog"
+    ]
+  },
+  {
+    "slug": "noticias-ia",
+    "nome": "Notícias de IA",
+    "descricao": "O que saiu de novo em inteligência artificial: modelos, produtos, pesquisa e regulação.",
+    "estilo": "noticia",
+    "formatos": ["reportagem", "em-1-minuto", "radar"],
+    "validade_dias": 14,
+    "janela_horas": 26,
+    "max_posts_por_dia": 3,
+    "cor": "#FFC531",
+    "ativo": true,
+    "consultas": [
+      "lançamento novo modelo de IA",
+      "OpenAI anuncia",
+      "Google Gemini novidades",
+      "Anthropic Claude lançamento",
+      "Meta Llama Mistral DeepSeek novo modelo",
+      "regulação de inteligência artificial"
+    ],
+    "fontes_preferidas": [
+      "blogs oficiais das empresas de IA",
+      "The Verge",
+      "TechCrunch",
+      "Tecnoblog",
+      "Canaltech"
+    ]
+  }
+]

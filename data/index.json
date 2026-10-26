@@ -1,0 +1,47 @@
+[
+  {
+    "id": "2026-10-26-exemplo-mini-aula",
+    "tema": "claude-estudos",
+    "titulo": "[Exemplo] Estrutura de uma mini aula",
+    "resumo": "Um conceito por vez, com exemplo prático para levar. Post de demonstração do layout de aprendizado.",
+    "formato": "mini-aula",
+    "data": "2026-10-26",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": true,
+    "tags": [
+      "exemplo",
+      "layout"
+    ]
+  },
+  {
+    "id": "2026-10-26-exemplo-em-1-minuto",
+    "tema": "noticias-ia",
+    "titulo": "[Exemplo] Assim aparece uma edição em 1 minuto",
+    "resumo": "Cinco linhas para saber o essencial antes do café. Este post é só para você ver o layout; a rotina das 6h apaga os exemplos.",
+    "formato": "em-1-minuto",
+    "data": "2026-10-26",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": true,
+    "tags": [
+      "exemplo",
+      "layout"
+    ]
+  },
+  {
+    "id": "2026-10-25-exemplo-reportagem",
+    "tema": "noticias-ia",
+    "titulo": "[Exemplo] Como uma reportagem curta é montada aqui",
+    "resumo": "Três a cinco parágrafos, escritos com as palavras do Radar e sempre com as fontes no final. Post de demonstração do layout.",
+    "formato": "reportagem",
+    "data": "2026-10-25",
+    "tempo_leitura_min": 1,
+    "destaque": true,
+    "exemplo": true,
+    "tags": [
+      "exemplo",
+      "layout"
+    ]
+  }
+]
