@@ -1,0 +1,66 @@
+{
+  "titulo": "SQL: FILTER para contar e somar condições numa única consulta",
+  "resumo": "Para quem já usa GROUP BY e CASE WHEN. A cláusula `FILTER (WHERE ...)` deixa a agregação condicional mais legível. Os dados do exemplo são fictícios.",
+  "formato": "mini-aula",
+  "data": "2026-10-26",
+  "destaque": false,
+  "tags": [
+    "sql",
+    "agregacao",
+    "sqlite",
+    "postgresql"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Em relatórios, é comum querer na mesma linha o total de vendas, quantas foram canceladas e a receita só das pagas. Muita gente resolve com `SUM(CASE WHEN ... THEN ... END)`. Funciona, mas o código fica poluído."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "Com `FILTER`, você escreve a condição logo depois da função de agregação: `count(*) FILTER (WHERE status = 'cancelado')`. Só as linhas em que a condição é verdadeira entram naquele agregado; as demais são descartadas só para ele. Os outros agregados do mesmo `SELECT` continuam vendo todas as linhas."
+    },
+    {
+      "tipo": "p",
+      "texto": "A sintaxe está na documentação do PostgreSQL e do SQLite. No SQLite ela chegou na versão 3.30.0, de 4 de outubro de 2019. Confira o suporte no seu banco antes de usar."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "p",
+      "texto": "A tabela abaixo é fictícia. Dá para rodar com o módulo `sqlite3` do Python, sem instalar nada."
+    },
+    {
+      "tipo": "code",
+      "texto": "import sqlite3\n\ncon = sqlite3.connect(\":memory:\")\ncon.executescript(\"\"\"\ncreate table v(regiao text, valor real, status text);\ninsert into v values\n ('Sul',100,'pago'), ('Sul',50,'cancelado'),\n ('Norte',80,'pago'), ('Norte',20,'pago'), ('Norte',30,'cancelado');\n\"\"\")\n\nsql = \"\"\"\nselect regiao,\n       count(*) as total,\n       count(*) filter (where status = 'cancelado') as cancelados,\n       sum(valor) filter (where status = 'pago') as receita\nfrom v\ngroup by regiao\norder by regiao\n\"\"\"\nfor linha in con.execute(sql):\n    print(linha)\n# ('Norte', 3, 1, 100.0)\n# ('Sul', 2, 1, 100.0)"
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "`agregado(...) FILTER (WHERE condição)` substitui o `CASE WHEN` dentro de `SUM` e `COUNT` e deixa a intenção explícita. Nem todo banco aceita; PostgreSQL e SQLite (3.30+) aceitam."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "SQLite: Aggregate Functions",
+      "url": "https://www.sqlite.org/lang_aggfunc.html"
+    },
+    {
+      "titulo": "SQLite: release 3.30.0",
+      "url": "https://www.sqlite.org/releaselog/3_30_0.html"
+    },
+    {
+      "titulo": "PostgreSQL: Aggregate Expressions",
+      "url": "https://www.postgresql.org/docs/current/sql-expressions.html"
+    }
+  ]
+}

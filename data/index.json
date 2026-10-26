@@ -1,5 +1,22 @@
 [
   {
+    "id": "2026-10-26-sql-filter-agregacao",
+    "tema": "data-analytics",
+    "titulo": "SQL: FILTER para contar e somar condições numa única consulta",
+    "resumo": "Para quem já usa GROUP BY e CASE WHEN. A cláusula `FILTER (WHERE ...)` deixa a agregação condicional mais legível. Os dados do exemplo são fictícios.",
+    "formato": "mini-aula",
+    "data": "2026-10-26",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "sql",
+      "agregacao",
+      "sqlite",
+      "postgresql"
+    ]
+  },
+  {
     "id": "2026-10-26-openai-treino-sem-internet-ao-vivo",
     "tema": "noticias-ia",
     "titulo": "OpenAI diz que vai parar de treinar modelos de fronteira com a internet ao vivo",
@@ -13,6 +30,22 @@
       "openai",
       "seguranca",
       "treinamento"
+    ]
+  },
+  {
+    "id": "2026-10-26-itertools-batched",
+    "tema": "python",
+    "titulo": "itertools.batched: dividir uma sequência em lotes sem escrever loop",
+    "resumo": "Para quem já usa itertools e quer parar de fatiar listas na mão. Veja como `batched` (Python 3.12+) agrupa itens em tuplas de tamanho fixo, e o que muda com `strict` no 3.13.",
+    "formato": "mini-aula",
+    "data": "2026-10-26",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "python",
+      "itertools",
+      "standard-library"
     ]
   },
   {

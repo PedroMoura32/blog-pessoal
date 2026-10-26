@@ -1,0 +1,57 @@
+{
+  "titulo": "itertools.batched: dividir uma sequência em lotes sem escrever loop",
+  "resumo": "Para quem já usa itertools e quer parar de fatiar listas na mão. Veja como `batched` (Python 3.12+) agrupa itens em tuplas de tamanho fixo, e o que muda com `strict` no 3.13.",
+  "formato": "mini-aula",
+  "data": "2026-10-26",
+  "destaque": false,
+  "tags": [
+    "python",
+    "itertools",
+    "standard-library"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Enviar dados para uma API em lotes de 100, gravar linhas no banco de 500 em 500 ou processar arquivos em grupos de dez são tarefas comuns. O jeito clássico é um `range` com passo e fatias, que só funciona com listas. A biblioteca padrão tem uma função para isso desde o Python 3.12."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "`itertools.batched(iterable, n)` devolve tuplas de até `n` itens. O último lote pode vir menor. Segundo a documentação, a entrada é consumida de forma preguiçosa, só o necessário para encher cada lote. Por isso ela serve também para geradores e arquivos grandes."
+    },
+    {
+      "tipo": "p",
+      "texto": "No Python 3.13 entrou o parâmetro `strict`, que só pode ser passado pelo nome. Com `strict=True`, um último lote incompleto levanta `ValueError`. Útil quando um lote menor seria sinal de dado faltando."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "code",
+      "texto": "# Python 3.12+ (o parâmetro strict exige 3.13+)\nfrom itertools import batched\n\nids = range(7)\nfor lote in batched(ids, 3):\n    print(lote)\n# (0, 1, 2)\n# (3, 4, 5)\n# (6,)\n\ntry:\n    list(batched(ids, 3, strict=True))\nexcept ValueError as e:\n    print(e)  # batched(): incomplete batch"
+    },
+    {
+      "tipo": "p",
+      "texto": "Rode o bloco acima e troque `7` por `6` para ver o `strict=True` passar sem erro."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Em Python 3.12 ou mais novo, use `batched` em vez de fatiar com `range`. Ele aceita qualquer iterável e devolve tuplas. Se precisar rodar em versões antigas, a documentação traz um código equivalente de poucas linhas com `islice`."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "Python docs: itertools.batched",
+      "url": "https://docs.python.org/3/library/itertools.html"
+    }
+  ]
+}
