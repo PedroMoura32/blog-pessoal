@@ -62,7 +62,7 @@
   {
     "slug": "python",
     "nome": "Python",
-    "descricao": "Técnicas, bibliotecas e novidades da linguagem, com exemplos que dá para rodar na hora.",
+    "descricao": "Funções, bibliotecas, técnicas e curiosidades da linguagem, do básico ao avançado, com exemplos que dá para rodar na hora.",
     "estilo": "aprendizado",
     "formatos": [
       "mini-aula",
@@ -75,24 +75,28 @@
     "cor": "#1FB58F",
     "ativo": true,
     "consultas": [
-      "Python novidades versão",
-      "Python dicas e boas práticas",
-      "PEP aprovada Python",
-      "pandas polars novidades",
-      "Python automação exemplo prático"
+      "Python dica função pouco conhecida",
+      "Python biblioteca útil exemplo",
+      "Python boas práticas código limpo",
+      "Python erros comuns e como evitar",
+      "Python novidades da versão",
+      "pandas polars truque",
+      "Python automação exemplo prático",
+      "Python standard library recurso esquecido"
     ],
     "fontes_preferidas": [
       "docs.python.org",
-      "python.org/downloads",
       "realpython.com",
       "peps.python.org",
-      "pandas.pydata.org"
+      "pandas.pydata.org",
+      "github.com",
+      "blogs técnicos e comunidade"
     ]
   },
   {
     "slug": "data-analytics",
     "nome": "Data Analytics",
-    "descricao": "Análise de dados no dia a dia: SQL, Power BI, Excel, visualização e boas práticas.",
+    "descricao": "Análise de dados no dia a dia: SQL, Power BI, Excel, Python e visualização, do básico ao avançado, com exemplos práticos.",
     "estilo": "aprendizado",
     "formatos": [
       "mini-aula",
@@ -106,18 +110,22 @@
     "cor": "#E8505B",
     "ativo": true,
     "consultas": [
-      "análise de dados dicas SQL",
-      "Power BI novidades",
+      "SQL dica técnica análise de dados",
+      "DAX Power Query técnica exemplo",
+      "Power BI novidades e boas práticas",
       "visualização de dados boas práticas",
-      "data analytics ferramentas novidades",
-      "DAX Power Query técnica"
+      "Excel função pouco conhecida análise",
+      "análise exploratória de dados passo a passo",
+      "erros comuns em análise de dados",
+      "ferramentas de data analytics novidades"
     ],
     "fontes_preferidas": [
       "learn.microsoft.com",
       "powerbi.microsoft.com/blog",
-      "towardsdatascience.com",
+      "kaggle.com",
       "datawrapper.de",
-      "kaggle.com"
+      "docs oficiais das ferramentas",
+      "blogs técnicos e comunidade"
     ]
   }
 ]
