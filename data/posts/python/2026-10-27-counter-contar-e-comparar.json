@@ -1,0 +1,58 @@
+{
+  "titulo": "collections.Counter: contar itens e fazer contas com contagens",
+  "resumo": "Para começar: `Counter` conta itens sem loop e ainda soma, subtrai e compara contagens como conjuntos. `total()` exige Python 3.10+. Os dados do exemplo são fictícios.",
+  "formato": "mini-aula",
+  "data": "2026-10-27",
+  "destaque": false,
+  "tags": [
+    "python",
+    "collections",
+    "counter",
+    "standard-library"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Contar quantas vezes algo aparece é tarefa de todo dia: palavras num texto, produtos num pedido, erros num log. Muita gente escreve um dicionário com `if chave in d` para isso. A biblioteca padrão já traz a ferramenta pronta."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "`Counter` é um dicionário especializado: você passa um iterável e ele conta cada elemento. `most_common(n)` devolve os `n` mais frequentes, e `total()` (Python 3.10+) soma todas as contagens. Elemento ausente vale zero, sem `KeyError`."
+    },
+    {
+      "tipo": "p",
+      "texto": "O mais útil é que `Counter` aceita operadores: `+` soma contagens, `-` subtrai e mantém só resultados positivos, `&` fica com o mínimo de cada item e `|` com o máximo. O `<=` testa se tudo que um tem cabe no outro (3.10+)."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "code",
+      "texto": "# Python 3.10+\nfrom collections import Counter\n\nprint(Counter('abracadabra').most_common(3))\n# [('a', 5), ('b', 2), ('r', 2)]\n\nestoque = Counter(maca=3, pera=1)\npedido = Counter(maca=1, pera=2)\n\nprint(estoque.total())        # 4\nprint(estoque + pedido)       # Counter({'maca': 4, 'pera': 3})\nprint(estoque - pedido)       # Counter({'maca': 2})\nprint(pedido <= estoque)      # False: faltam peras\nprint(Counter(maca=1) <= estoque)  # True"
+    },
+    {
+      "tipo": "p",
+      "texto": "Os números acima são fictícios. A conta `pedido <= estoque` é uma forma curta de checar se dá para atender um pedido: ela só vale `True` quando cada item pedido existe em quantidade suficiente."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Antes de montar um dicionário de contagem na mão, use `Counter`. E lembre que `-` descarta resultados zero ou negativos; para manter negativos, use o método `subtract()`."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "Documentação do Python: collections.Counter",
+      "url": "https://docs.python.org/3/library/collections.html"
+    }
+  ]
+}

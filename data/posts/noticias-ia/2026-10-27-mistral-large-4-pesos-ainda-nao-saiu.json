@@ -1,0 +1,57 @@
+{
+  "titulo": "Mistral Large 4: pesos abertos eram esperados para 27 de outubro, mas ainda não saíram",
+  "resumo": "A Mistral lançou a prévia do Large 4 por API em 6 de outubro e prometeu os pesos para o fim do mês. Até 26 de outubro não havia data confirmada nem licença publicada.",
+  "formato": "reportagem",
+  "data": "2026-10-27",
+  "destaque": true,
+  "tags": [
+    "mistral",
+    "modelos-abertos",
+    "open-weights"
+  ],
+  "corpo": [
+    {
+      "tipo": "p",
+      "texto": "A Mistral apresentou em **6 de outubro** a prévia do Large 4, modelo multimodal (texto e imagem) que a empresa descreve como o mais poderoso de pesos abertos fora da China. Essa classificação é da própria Mistral e não foi verificada de forma independente. A API já está disponível; os pesos para download, não."
+    },
+    {
+      "tipo": "p",
+      "texto": "Segundo a cobertura da época, o modelo tem cerca de 1 trilhão de parâmetros no total (o MarkTechPost fala em 1,05 trilhão), com cerca de 49 bilhões ativos por token, numa arquitetura de mistura de especialistas. O MarkTechPost cita contexto de 1 milhão de tokens e preço de prévia de US$ 1,36 por milhão de tokens de entrada e US$ 4,18 por milhão de saída. Esses números vêm de um único veículo e não consegui confirmá-los em segunda fonte."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O que falta confirmar"
+    },
+    {
+      "tipo": "p",
+      "texto": "A data dos pesos é o ponto em aberto. A Reuters teria apontado **27 de outubro**, mas a Mistral não confirmou: a página da empresa diz apenas que os pesos saem no fim do mês. Segundo o Forkast, em 26 de outubro o cartão do modelo no Hugging Face mostrava contagem regressiva até **31 de outubro**, com aviso de que a data pode mudar."
+    },
+    {
+      "tipo": "p",
+      "texto": "Também não há licença publicada. O Forkast lembra que o Large 3 saiu sob Apache 2.0 e que a Mistral já usou termos que exigem licença comercial de empresas com receita mensal acima de US$ 20 milhões, mas que não se sabe o que valerá para o Large 4. Sem o arquivo de licença, não dá para dizer se será possível usar o modelo comercialmente."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para acompanhar",
+      "texto": "Só dá para rodar o Large 4 por conta própria depois da publicação dos pesos e da licença. Os benchmarks divulgados são preliminares, segundo a própria Mistral, e podem mudar até lá."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "The Next Web: Mistral lança Large 4",
+      "url": "https://thenextweb.com/news/mistral-releases-large-4-a-1-trillion-parameter-open-weight-ai-model"
+    },
+    {
+      "titulo": "MarketScreener: Mistral unveils Large 4",
+      "url": "https://www.marketscreener.com/news/mistral-unveils-large-4-its-new-open-weight-ai-model-ce785dd9db81fe22"
+    },
+    {
+      "titulo": "Forkast: Mistral Large 4 Weights, The Final Week",
+      "url": "https://forkast.news/mistral-large-4-weights-the-final-week/"
+    },
+    {
+      "titulo": "MarkTechPost: Mistral Large 4 (Le Chonk)",
+      "url": "https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/"
+    }
+  ]
+}

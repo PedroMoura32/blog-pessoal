@@ -1,5 +1,55 @@
 [
   {
+    "id": "2026-10-27-sql-janela-rows-vs-range",
+    "tema": "data-analytics",
+    "titulo": "SQL: por que o total acumulado repete valor quando há empates (ROWS vs RANGE)",
+    "resumo": "Para quem já usa funções de janela e estranhou um acumulado que não cresce linha a linha. O quadro padrão com `ORDER BY` é `RANGE`, que junta empates. Os dados do exemplo são fictícios.",
+    "formato": "mini-aula",
+    "data": "2026-10-27",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "sql",
+      "window-functions",
+      "postgresql",
+      "sqlite"
+    ]
+  },
+  {
+    "id": "2026-10-27-mistral-large-4-pesos-ainda-nao-saiu",
+    "tema": "noticias-ia",
+    "titulo": "Mistral Large 4: pesos abertos eram esperados para 27 de outubro, mas ainda não saíram",
+    "resumo": "A Mistral lançou a prévia do Large 4 por API em 6 de outubro e prometeu os pesos para o fim do mês. Até 26 de outubro não havia data confirmada nem licença publicada.",
+    "formato": "reportagem",
+    "data": "2026-10-27",
+    "tempo_leitura_min": 2,
+    "destaque": true,
+    "exemplo": false,
+    "tags": [
+      "mistral",
+      "modelos-abertos",
+      "open-weights"
+    ]
+  },
+  {
+    "id": "2026-10-27-counter-contar-e-comparar",
+    "tema": "python",
+    "titulo": "collections.Counter: contar itens e fazer contas com contagens",
+    "resumo": "Para começar: `Counter` conta itens sem loop e ainda soma, subtrai e compara contagens como conjuntos. `total()` exige Python 3.10+. Os dados do exemplo são fictícios.",
+    "formato": "mini-aula",
+    "data": "2026-10-27",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "python",
+      "collections",
+      "counter",
+      "standard-library"
+    ]
+  },
+  {
     "id": "2026-10-26-sql-filter-agregacao",
     "tema": "data-analytics",
     "titulo": "SQL: FILTER para contar e somar condições numa única consulta",

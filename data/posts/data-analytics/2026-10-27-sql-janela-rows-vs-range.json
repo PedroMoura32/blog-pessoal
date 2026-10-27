@@ -1,0 +1,58 @@
+{
+  "titulo": "SQL: por que o total acumulado repete valor quando há empates (ROWS vs RANGE)",
+  "resumo": "Para quem já usa funções de janela e estranhou um acumulado que não cresce linha a linha. O quadro padrão com `ORDER BY` é `RANGE`, que junta empates. Os dados do exemplo são fictícios.",
+  "formato": "mini-aula",
+  "data": "2026-10-27",
+  "destaque": false,
+  "tags": [
+    "sql",
+    "window-functions",
+    "postgresql",
+    "sqlite"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Um total acumulado com `SUM(...) OVER (ORDER BY data)` parece simples. Mas, se duas linhas têm a mesma data, o acumulado dessas duas linhas sai igual, e o resultado parece errado. Não é bug: é o quadro (frame) padrão da janela."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "Segundo a documentação do PostgreSQL, o padrão com `ORDER BY` é `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`. Nesse modo, \"linha atual\" inclui todos os pares, isto é, linhas que o `ORDER BY` considera iguais. Com `ROWS`, a linha atual é só ela mesma."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "p",
+      "texto": "Quatro valores fictícios, com um empate no 2. Roda em PostgreSQL e em SQLite 3.25+ (testado no 3.53)."
+    },
+    {
+      "tipo": "code",
+      "texto": "SELECT v,\n       SUM(v) OVER (ORDER BY v) AS padrao_range,\n       SUM(v) OVER (ORDER BY v ROWS UNBOUNDED PRECEDING) AS linha_a_linha\nFROM (SELECT 1 AS v UNION ALL SELECT 2 UNION ALL SELECT 2 UNION ALL SELECT 3) AS t\n-- v | padrao_range | linha_a_linha\n-- 1 | 1            | 1\n-- 2 | 5            | 3\n-- 2 | 5            | 5\n-- 3 | 8            | 8"
+    },
+    {
+      "tipo": "p",
+      "texto": "No `RANGE`, as duas linhas com 2 mostram 5, pois entram juntas. No `ROWS`, o acumulado cresce uma linha por vez. Note que a ordem entre linhas empatadas não é garantida; para um resultado estável, acrescente uma coluna única ao `ORDER BY`, como um id."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Quer acumulado linha a linha? Escreva `ROWS UNBOUNDED PRECEDING` de forma explícita e desempate o `ORDER BY`. Quer agrupar empates, o padrão já faz isso."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "PostgreSQL: Window Function Calls",
+      "url": "https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS"
+    }
+  ]
+}
