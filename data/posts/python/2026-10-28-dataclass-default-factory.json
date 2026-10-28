@@ -1,0 +1,65 @@
+{
+  "titulo": "dataclass: por que lista como valor padrão dá erro (e como usar default_factory)",
+  "resumo": "Para quem já usa `@dataclass`: um valor padrão mutável seria compartilhado por todas as instâncias. `field(default_factory=...)` dá uma cópia nova a cada objeto.",
+  "formato": "mini-aula",
+  "data": "2026-10-28",
+  "destaque": false,
+  "tags": [
+    "python",
+    "dataclasses",
+    "armadilhas"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Quem vem de funções com `def f(x=[])` já conhece o problema do valor padrão mutável. Em classes é parecido: o valor padrão de um atributo é criado uma única vez, quando a classe é definida, e todas as instâncias passam a apontar para ele."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "Num `@dataclass`, escrever `itens: list = []` faria dois objetos compartilharem a mesma lista: mudar em um mudaria no outro. Por isso o módulo recusa listas, dicionários e conjuntos como padrão e levanta um erro ao definir a classe. O tipo do erro varia: uma dica do mathspp fala em `ValueError`, e a documentação do Python 3.7 fala em `TypeError`. No Python 3.13, o teste abaixo levantou `ValueError`."
+    },
+    {
+      "tipo": "p",
+      "texto": "A saída é `field(default_factory=list)`. A fábrica é uma função sem argumentos, chamada toda vez que um valor padrão é necessário. Assim cada instância ganha o seu próprio objeto. O linter Ruff tem a regra RUF009 para avisar de chamadas de função usadas como padrão, pelo mesmo motivo: a chamada roda só uma vez."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "code",
+      "texto": "# Python 3.9+ (por causa de list[str])\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Pedido:\n    itens: list[str] = field(default_factory=list)\n\na = Pedido()\nb = Pedido()\na.itens.append(\"café\")\nprint(a.itens)  # ['café']\nprint(b.itens)  # []  -> listas independentes\n\n# Isto falha ao definir a classe:\n# @dataclass\n# class Ruim:\n#     itens: list = []"
+    },
+    {
+      "tipo": "p",
+      "texto": "Teste: tire o comentário da classe `Ruim` e rode. O erro aparece na definição, antes de qualquer objeto ser criado."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Atributo mutável num dataclass? Use `field(default_factory=list)` (ou `dict`, `set`). Valores imutáveis, como números e textos, podem ir direto no `=`."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "Ruff: function-call-in-dataclass-default-argument (RUF009)",
+      "url": "https://docs.astral.sh/ruff/rules/function-call-in-dataclass-default-argument/"
+    },
+    {
+      "titulo": "Python 3.7: dataclasses — Data Classes (documentação, zh-tw)",
+      "url": "https://docs.python.org/zh-tw/3.7/library/dataclasses.html"
+    },
+    {
+      "titulo": "mathspp drops: field default_factory",
+      "url": "https://drops.mathspp.com/_sources/0182-field_default_factory/tip.md"
+    }
+  ]
+}

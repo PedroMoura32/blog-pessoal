@@ -1,5 +1,38 @@
 [
   {
+    "id": "2026-10-28-pandas-merge-validate",
+    "tema": "data-analytics",
+    "titulo": "pandas: use validate no merge para não duplicar linhas sem perceber",
+    "resumo": "Para começar: um `merge` com chaves repetidas multiplica linhas e infla totais sem aviso. O parâmetro `validate` faz o pandas parar com erro. Dados fictícios.",
+    "formato": "mini-aula",
+    "data": "2026-10-28",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "pandas",
+      "merge",
+      "qualidade-de-dados",
+      "python"
+    ]
+  },
+  {
+    "id": "2026-10-28-dataclass-default-factory",
+    "tema": "python",
+    "titulo": "dataclass: por que lista como valor padrão dá erro (e como usar default_factory)",
+    "resumo": "Para quem já usa `@dataclass`: um valor padrão mutável seria compartilhado por todas as instâncias. `field(default_factory=...)` dá uma cópia nova a cada objeto.",
+    "formato": "mini-aula",
+    "data": "2026-10-28",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "python",
+      "dataclasses",
+      "armadilhas"
+    ]
+  },
+  {
     "id": "2026-10-27-sql-janela-rows-vs-range",
     "tema": "data-analytics",
     "titulo": "SQL: por que o total acumulado repete valor quando há empates (ROWS vs RANGE)",

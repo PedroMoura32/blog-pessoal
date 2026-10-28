@@ -1,0 +1,70 @@
+{
+  "titulo": "pandas: use validate no merge para não duplicar linhas sem perceber",
+  "resumo": "Para começar: um `merge` com chaves repetidas multiplica linhas e infla totais sem aviso. O parâmetro `validate` faz o pandas parar com erro. Dados fictícios.",
+  "formato": "mini-aula",
+  "data": "2026-10-28",
+  "destaque": false,
+  "tags": [
+    "pandas",
+    "merge",
+    "qualidade-de-dados",
+    "python"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Juntar tabelas é rotina em análise de dados. O risco é uma chave que deveria ser única aparecer repetida: cada linha repetida gera mais uma linha no resultado, e a soma de vendas fica maior que a real. O pandas não avisa, a menos que você peça."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "O parâmetro `validate` do `merge` declara qual relação você espera entre as tabelas: `\"one_to_one\"` (chaves únicas dos dois lados), `\"one_to_many\"` (únicas na esquerda), `\"many_to_one\"` (únicas na direita) ou `\"many_to_many\"` (sem restrição). Se a realidade for diferente, o pandas levanta `MergeError` em vez de seguir adiante."
+    },
+    {
+      "tipo": "p",
+      "texto": "Outro aliado é `indicator=True`, que cria a coluna `_merge` com `left_only`, `right_only` ou `both`, útil para ver quais linhas não encontraram par."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "p",
+      "texto": "Os dados abaixo são fictícios. A tabela de clientes tem o `id` 2 repetido por engano."
+    },
+    {
+      "tipo": "code",
+      "texto": "import pandas as pd\n\nclientes = pd.DataFrame({\n    \"id\": [1, 2, 2],\n    \"nome\": [\"Ana\", \"Bia\", \"Bia (cadastro repetido)\"],\n})\nvendas = pd.DataFrame({\"id\": [1, 2], \"valor\": [100, 50]})\n\n# Sem validar: 3 linhas e total de 200, embora as vendas somem 150\nm = vendas.merge(clientes, on=\"id\", how=\"left\")\nprint(len(m), m[\"valor\"].sum())\n\n# Validando: o pandas para e aponta a chave duplicada\n# vendas.merge(clientes, on=\"id\", how=\"left\", validate=\"many_to_one\")\n# MergeError: Merge keys are not unique in right dataset\n\n# Corrigindo a duplicata e auditando o resultado\nok = vendas.merge(\n    clientes.drop_duplicates(\"id\"),\n    on=\"id\", how=\"left\",\n    validate=\"many_to_one\", indicator=True,\n)\nprint(ok)"
+    },
+    {
+      "tipo": "p",
+      "texto": "Rodei o exemplo no pandas 3.0.5: o primeiro `merge` devolveu 3 linhas com soma 200, e o segundo, com `validate`, levantou `MergeError`."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Em todo `merge` onde uma chave deveria ser única, escreva a relação esperada em `validate`. Custa uma linha e evita totais inflados."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "Daily Dose of DS: a lesser-known feature of the merge method in pandas",
+      "url": "https://www.blog.dailydoseofds.com/p/a-lesser-known-feature-of-the-merge"
+    },
+    {
+      "titulo": "Finxter: 5 best ways to merge DataFrames with many-to-one relationships in pandas",
+      "url": "https://blog.finxter.com/5-best-ways-to-merge-dataframes-with-many-to-one-relationships-in-pandas/"
+    },
+    {
+      "titulo": "Kanaries: pandas merge join",
+      "url": "https://docs.kanaries.net/topics/Pandas/pandas-merge-join"
+    }
+  ]
+}
