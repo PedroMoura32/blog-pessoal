@@ -1,0 +1,58 @@
+{
+  "titulo": "GSA amplia acordo com a Anthropic: 40% de desconto no uso do Claude por governos",
+  "resumo": "Em 27 de outubro, a GSA anunciou a expansão do acordo OneGov com a Anthropic. O desconto de 40% vale para o uso por tokens e alcança governos federal, estaduais, locais e tribais.",
+  "formato": "reportagem",
+  "data": "2026-10-29",
+  "destaque": true,
+  "tags": [
+    "anthropic",
+    "claude",
+    "governo",
+    "precos"
+  ],
+  "corpo": [
+    {
+      "tipo": "p",
+      "texto": "A GSA (agência de serviços gerais do governo dos EUA) anunciou em **27 de outubro de 2026** a expansão do acordo OneGov com a Anthropic. O novo pacote oferece, segundo a agência, preço \"com grande desconto\" e baseado em consumo para os modelos Claude disponíveis ao governo."
+    },
+    {
+      "tipo": "p",
+      "texto": "O desconto é de **40% sobre o uso medido em tokens**. Não há pedido mínimo: os órgãos pagam só pelo que usam. O texto da GSA menciona ambientes autorizados pelo FedRAMP, usados em trabalhos sensíveis que não são classificados."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Quem pode comprar"
+    },
+    {
+      "tipo": "p",
+      "texto": "A oferta cobre entidades federais dos poderes Executivo, Legislativo e Judiciário, além de governos estaduais, locais e tribais. O veículo Runtime Wire acrescenta que, segundo a Anthropic, governos de territórios também são elegíveis; esse ponto não aparece no resumo da GSA que consultamos."
+    },
+    {
+      "tipo": "p",
+      "texto": "A compra pode ser feita direto com a Anthropic, por revendedores ou em grandes plataformas de nuvem. Os detalhes de pedido ficam na página do OneGov, mantida pela GSA."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O contexto"
+    },
+    {
+      "tipo": "p",
+      "texto": "A GSA afirma que o OneGov já gerou mais de US$ 1,8 bilhão em economia desde o início, dos quais cerca de US$ 1,6 bilhão vêm dos acordos de IA. A agência diz que o novo acordo reflete a passagem de avaliar a tecnologia para usá-la no trabalho diário, e que pretende renovar ofertas que estão vencendo, quando fizer sentido."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "O que ainda não se sabe",
+      "texto": "Nenhuma das fontes consultadas informa o valor total do contrato nem quantos órgãos devem aderir. Valores de economia citados por terceiros não foram confirmados em duas fontes e ficaram de fora."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "GSA, Anthropic Reach OneGov Agreement on Discounted, Consumption-Based Pricing for Claude",
+      "url": "https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-anthropic-reach-onegov-agreement-on-discounted-consumptionbased-pricing-10272026"
+    },
+    {
+      "titulo": "Anthropic expands GSA deal with 40% off Claude usage (Runtime Wire)",
+      "url": "https://runtimewire.com/article/anthropic-gsa-40-percent-government-claude-discount"
+    }
+  ]
+}

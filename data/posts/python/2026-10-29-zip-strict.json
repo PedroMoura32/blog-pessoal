@@ -1,0 +1,58 @@
+{
+  "titulo": "zip(strict=True): pare de perder dados quando as listas têm tamanhos diferentes",
+  "resumo": "Para quem já usa `zip`: por padrão ele para na lista mais curta, sem avisar. Com `strict=True` (Python 3.10+), tamanhos diferentes viram um `ValueError`.",
+  "formato": "mini-aula",
+  "data": "2026-10-29",
+  "destaque": false,
+  "tags": [
+    "python",
+    "zip",
+    "armadilhas",
+    "builtins"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "O `zip` junta listas posição a posição. Se uma delas for menor, ele simplesmente termina quando a mais curta acaba. Os itens que sobram nas outras somem sem erro nem aviso, e isso pode esconder um bug na hora de montar, por exemplo, pares de nome e nota."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "O parâmetro `strict`, somente nomeado, foi adicionado pela PEP 618 e vale a partir do Python 3.10. Com `strict=True`, o `zip` confere se todos os iteráveis têm o mesmo tamanho e levanta `ValueError` se não tiverem. O padrão continua `False`, então código antigo não muda. Um detalhe: o erro aparece só quando a iteração chega ao fim, não antes de começar."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "code",
+      "texto": "# Python 3.10+\nnomes = [\"Ana\", \"Bia\", \"Caio\"]\nnotas = [8, 9]\n\nprint(list(zip(nomes, notas)))\n# [('Ana', 8), ('Bia', 9)]  -> Caio sumiu em silêncio\n\ntry:\n    list(zip(nomes, notas, strict=True))\nexcept ValueError as e:\n    print(e)\n# zip() argument 2 is shorter than argument 1"
+    },
+    {
+      "tipo": "p",
+      "texto": "O resultado acima foi obtido rodando o código no Python 3.13. A mensagem exata pode variar entre versões."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Se as listas deveriam ter o mesmo tamanho, use `zip(..., strict=True)`. Se o tamanho diferente é esperado, deixe o padrão e saiba que o excedente é descartado."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "PEP 618 – Add Optional Length-Checking To zip",
+      "url": "https://peps.python.org/pep-0618/"
+    },
+    {
+      "titulo": "zip's keyword argument strict (mathspp drops)",
+      "url": "https://drops.mathspp.com/0001-zip_strict_true/tip.html"
+    }
+  ]
+}

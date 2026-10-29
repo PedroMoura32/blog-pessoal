@@ -1,0 +1,58 @@
+{
+  "titulo": "SQL: COUNT(*) e COUNT(coluna) dão números diferentes quando há NULL",
+  "resumo": "Para quem está começando em SQL: `COUNT(*)` conta linhas, `COUNT(coluna)` ignora NULL, e `AVG` também. Isso muda médias e percentuais sem você perceber.",
+  "formato": "mini-aula",
+  "data": "2026-10-29",
+  "destaque": false,
+  "tags": [
+    "sql",
+    "null",
+    "agregacao",
+    "sqlite"
+  ],
+  "corpo": [
+    {
+      "tipo": "h2",
+      "texto": "Por que importa"
+    },
+    {
+      "tipo": "p",
+      "texto": "Uma média de desconto ou um percentual de preenchimento pode sair errado só porque a coluna tem valores vazios (NULL). Quem lê o relatório raramente percebe, porque a consulta roda sem erro."
+    },
+    {
+      "tipo": "h2",
+      "texto": "O conceito"
+    },
+    {
+      "tipo": "p",
+      "texto": "Segundo a documentação do SQLite, `count(*)` conta todas as linhas do grupo, enquanto `count(X)` conta só as linhas em que X não é NULL. `avg(X)` também ignora os NULL e calcula a média dos valores presentes. Se todos forem NULL, o resultado é NULL. Quando o NULL deveria valer zero, troque-o antes com `COALESCE`."
+    },
+    {
+      "tipo": "h2",
+      "texto": "Exemplo prático"
+    },
+    {
+      "tipo": "p",
+      "texto": "Os dados abaixo são fictícios: quatro vendas, duas delas sem desconto registrado (NULL). Você pode rodar no SQLite."
+    },
+    {
+      "tipo": "code",
+      "texto": "CREATE TABLE vendas(id INTEGER, cliente TEXT, desconto REAL);\nINSERT INTO vendas VALUES\n  (1, 'Ana', 10), (2, 'Bia', NULL),\n  (3, 'Caio', NULL), (4, 'Dani', 5);\n\nSELECT COUNT(*)        AS linhas,           -- 4\n       COUNT(desconto) AS com_desconto,     -- 2\n       AVG(desconto)   AS media_so_preenchidos,  -- 7.5\n       AVG(COALESCE(desconto, 0)) AS media_todas -- 3.75\nFROM vendas;"
+    },
+    {
+      "tipo": "p",
+      "texto": "A média de 7,5 considera só quem teve desconto; a de 3,75 considera as quatro vendas. Nenhuma está errada: elas respondem perguntas diferentes, e é preciso escolher a certa."
+    },
+    {
+      "tipo": "callout",
+      "titulo": "Para levar",
+      "texto": "Antes de calcular média ou percentual, confira `COUNT(*)` contra `COUNT(coluna)`. A diferença é a quantidade de NULL que você está ignorando."
+    }
+  ],
+  "fontes": [
+    {
+      "titulo": "SQLite: Aggregate Functions",
+      "url": "https://sqlite.org/lang_aggfunc.html"
+    }
+  ]
+}

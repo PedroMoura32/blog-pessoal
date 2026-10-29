@@ -1,5 +1,56 @@
 [
   {
+    "id": "2026-10-29-zip-strict",
+    "tema": "python",
+    "titulo": "zip(strict=True): pare de perder dados quando as listas têm tamanhos diferentes",
+    "resumo": "Para quem já usa `zip`: por padrão ele para na lista mais curta, sem avisar. Com `strict=True` (Python 3.10+), tamanhos diferentes viram um `ValueError`.",
+    "formato": "mini-aula",
+    "data": "2026-10-29",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "python",
+      "zip",
+      "armadilhas",
+      "builtins"
+    ]
+  },
+  {
+    "id": "2026-10-29-sql-count-null",
+    "tema": "data-analytics",
+    "titulo": "SQL: COUNT(*) e COUNT(coluna) dão números diferentes quando há NULL",
+    "resumo": "Para quem está começando em SQL: `COUNT(*)` conta linhas, `COUNT(coluna)` ignora NULL, e `AVG` também. Isso muda médias e percentuais sem você perceber.",
+    "formato": "mini-aula",
+    "data": "2026-10-29",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "sql",
+      "null",
+      "agregacao",
+      "sqlite"
+    ]
+  },
+  {
+    "id": "2026-10-29-gsa-anthropic-desconto-40",
+    "tema": "noticias-ia",
+    "titulo": "GSA amplia acordo com a Anthropic: 40% de desconto no uso do Claude por governos",
+    "resumo": "Em 27 de outubro, a GSA anunciou a expansão do acordo OneGov com a Anthropic. O desconto de 40% vale para o uso por tokens e alcança governos federal, estaduais, locais e tribais.",
+    "formato": "reportagem",
+    "data": "2026-10-29",
+    "tempo_leitura_min": 1,
+    "destaque": true,
+    "exemplo": false,
+    "tags": [
+      "anthropic",
+      "claude",
+      "governo",
+      "precos"
+    ]
+  },
+  {
     "id": "2026-10-28-pandas-merge-validate",
     "tema": "data-analytics",
     "titulo": "pandas: use validate no merge para não duplicar linhas sem perceber",
