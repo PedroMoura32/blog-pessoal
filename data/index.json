@@ -1,5 +1,56 @@
 [
   {
+    "id": "2026-10-30-sql-nullif-divisao-por-zero",
+    "tema": "data-analytics",
+    "titulo": "SQL: NULLIF para evitar divisão por zero sem derrubar a consulta",
+    "resumo": "Nível intermediário: dividir por zero faz a consulta falhar em bancos como o PostgreSQL. `NULLIF` transforma o zero em NULL e `COALESCE` escolhe o que mostrar no lugar.",
+    "formato": "mini-aula",
+    "data": "2026-10-30",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "sql",
+      "nullif",
+      "coalesce",
+      "postgresql"
+    ]
+  },
+  {
+    "id": "2026-10-30-gemini-4-carbon-so-defensores",
+    "tema": "noticias-ia",
+    "titulo": "Google lança o Gemini 4 Carbon, mas só defensores de segurança têm acesso por enquanto",
+    "resumo": "Em 28 de outubro, o Google anunciou o Gemini 4 Carbon, novo modelo voltado a cibersegurança e engenharia de software de longa duração. O acesso começa restrito a parceiros do programa Fairwind, sem data para o público geral.",
+    "formato": "reportagem",
+    "data": "2026-10-30",
+    "tempo_leitura_min": 1,
+    "destaque": true,
+    "exemplo": false,
+    "tags": [
+      "google",
+      "gemini",
+      "ciberseguranca",
+      "modelos"
+    ]
+  },
+  {
+    "id": "2026-10-30-cached-property",
+    "tema": "python",
+    "titulo": "functools.cached_property: calcule uma vez, reuse sempre (e saiba como limpar)",
+    "resumo": "Nível intermediário: `cached_property` (Python 3.8+) guarda o resultado de um método caro como atributo da instância. Veja como funciona, como invalidar e a pegadinha de threads.",
+    "formato": "mini-aula",
+    "data": "2026-10-30",
+    "tempo_leitura_min": 1,
+    "destaque": false,
+    "exemplo": false,
+    "tags": [
+      "python",
+      "functools",
+      "cache",
+      "standard-library"
+    ]
+  },
+  {
     "id": "2026-10-29-zip-strict",
     "tema": "python",
     "titulo": "zip(strict=True): pare de perder dados quando as listas têm tamanhos diferentes",

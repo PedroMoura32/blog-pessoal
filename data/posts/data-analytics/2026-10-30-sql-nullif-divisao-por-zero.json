@@ -1,0 +1,22 @@
+{
+  "titulo": "SQL: NULLIF para evitar divisão por zero sem derrubar a consulta",
+  "resumo": "Nível intermediário: dividir por zero faz a consulta falhar em bancos como o PostgreSQL. `NULLIF` transforma o zero em NULL e `COALESCE` escolhe o que mostrar no lugar.",
+  "formato": "mini-aula",
+  "data": "2026-10-30",
+  "destaque": false,
+  "tags": ["sql", "nullif", "coalesce", "postgresql"],
+  "corpo": [
+    { "tipo": "h2", "texto": "Por que importa" },
+    { "tipo": "p", "texto": "Calcular taxas, como conversão ou ticket médio, é rotina. Basta um grupo com denominador zero para a consulta inteira falhar com erro de divisão por zero no PostgreSQL." },
+    { "tipo": "h2", "texto": "O conceito" },
+    { "tipo": "p", "texto": "Segundo a documentação do PostgreSQL, `NULLIF(a, b)` devolve NULL quando `a` é igual a `b`; senão, devolve `a`. E dividir por NULL dá NULL, não erro. Já `COALESCE` devolve o primeiro argumento que não é NULL, e serve para trocar o NULL por um valor de exibição." },
+    { "tipo": "h2", "texto": "Exemplo prático" },
+    { "tipo": "p", "texto": "Os dados abaixo são fictícios: uma tabela `campanhas` com `visitas` e `compras`." },
+    { "tipo": "code", "texto": "SELECT\n  nome,\n  compras * 1.0 / NULLIF(visitas, 0) AS taxa,\n  COALESCE(compras * 1.0 / NULLIF(visitas, 0), 0) AS taxa_ou_zero\nFROM campanhas;" },
+    { "tipo": "p", "texto": "Uma campanha com 0 visita mostra `taxa` NULL e `taxa_ou_zero` 0. O `* 1.0` evita divisão inteira, que descartaria as casas decimais." },
+    { "tipo": "callout", "titulo": "Para levar", "texto": "Use NULLIF no denominador. Prefira deixar NULL quando \"sem dados\" for diferente de \"taxa zero\": trocar por 0 com COALESCE pode esconder esse caso nas médias." }
+  ],
+  "fontes": [
+    { "titulo": "PostgreSQL: Conditional Expressions (NULLIF, COALESCE)", "url": "https://www.postgresql.org/docs/current/functions-conditional.html" }
+  ]
+}

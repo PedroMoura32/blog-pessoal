@@ -1,0 +1,22 @@
+{
+  "titulo": "Google lança o Gemini 4 Carbon, mas só defensores de segurança têm acesso por enquanto",
+  "resumo": "Em 28 de outubro, o Google anunciou o Gemini 4 Carbon, novo modelo voltado a cibersegurança e engenharia de software de longa duração. O acesso começa restrito a parceiros do programa Fairwind, sem data para o público geral.",
+  "formato": "reportagem",
+  "data": "2026-10-30",
+  "destaque": true,
+  "tags": ["google", "gemini", "ciberseguranca", "modelos"],
+  "corpo": [
+    { "tipo": "p", "texto": "O Google anunciou em 28 de outubro de 2026 o **Gemini 4 Carbon**, que a empresa apresenta como seu novo modelo de ponta, com foco em cibersegurança e em projetos de engenharia de software que duram muitas etapas. O texto de apresentação foi assinado por Koray Kavukcuoglu, que lidera o Google DeepMind, segundo o Runtime Wire." },
+    { "tipo": "p", "texto": "A liberação é gradual. De início, o Carbon fica disponível apenas para defensores de segurança selecionados, por meio do programa **Fairwind** do Google. Em seguida, o acesso será ampliado pelo mesmo programa. Nenhuma das fontes consultadas traz data para desenvolvedores, empresas ou consumidores em geral." },
+    { "tipo": "p", "texto": "O preço de lançamento da API é igual ao do Gemini 4 Argon: US$ 2 por milhão de tokens de entrada e US$ 10 por milhão de tokens de saída. O Constellation Research e o Runtime Wire confirmam os valores, mas não dizem por quanto tempo essa tarifa introdutória vale." },
+    { "tipo": "h2", "texto": "O que o Google diz sobre desempenho" },
+    { "tipo": "p", "texto": "O Google afirma que o modelo é muito forte em cibersegurança e em tarefas longas, e que testes internos mostram código mais seguro em produção. Esses são resultados informados pela própria empresa. O Runtime Wire observa que o índice amplo da Artificial Analysis, citado nas comparações, não mede cibersegurança." },
+    { "tipo": "p", "texto": "Segundo o Winbuzzer, o Carbon marca 59 no índice v5 da Artificial Analysis, contra 58 do Claude Opus 5.5. O mesmo veículo cita uma taxa de alucinação de 11% medida pela Artificial Analysis, acima dos 4% do Argon. Esses números aparecem só nessa fonte e não foram confirmados em outra." },
+    { "tipo": "callout", "titulo": "Vale conferir", "texto": "Quem não participa do Fairwind ainda não consegue testar o modelo. Os números de benchmark são divulgados pelo Google ou por terceiros e ainda não têm replicação independente ampla." }
+  ],
+  "fontes": [
+    { "titulo": "Winbuzzer: Gemini 4 Carbon puts Google back on top, but only cyber defenders can use it for now", "url": "https://winbuzzer.com/2026/10/28/gemini-4-carbon-ai-leads-test-for-fixing-vulnerable-code-xcxwbn" },
+    { "titulo": "Constellation Research: Google rolls out Gemini 4 Carbon", "url": "https://www.constellationr.com/insights/news/google-rolls-out-gemini-4-carbon" },
+    { "titulo": "Runtime Wire: Google launches Gemini 4 Carbon with cyber benchmarks and restricted access", "url": "https://runtimewire.com/article/google-gemini-4-carbon-cybersecurity-launch" }
+  ]
+}

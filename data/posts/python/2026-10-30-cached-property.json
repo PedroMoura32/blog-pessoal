@@ -1,0 +1,21 @@
+{
+  "titulo": "functools.cached_property: calcule uma vez, reuse sempre (e saiba como limpar)",
+  "resumo": "Nível intermediário: `cached_property` (Python 3.8+) guarda o resultado de um método caro como atributo da instância. Veja como funciona, como invalidar e a pegadinha de threads.",
+  "formato": "mini-aula",
+  "data": "2026-10-30",
+  "destaque": false,
+  "tags": ["python", "functools", "cache", "standard-library"],
+  "corpo": [
+    { "tipo": "h2", "texto": "Por que importa" },
+    { "tipo": "p", "texto": "Quando uma propriedade faz uma conta pesada, cada acesso repete o trabalho. O `cached_property` resolve isso: o cálculo roda na primeira leitura e o resultado fica guardado na própria instância." },
+    { "tipo": "h2", "texto": "O conceito" },
+    { "tipo": "p", "texto": "Segundo a documentação, o decorador só age quando não existe um atributo com o mesmo nome. Ao rodar, ele grava o resultado nesse atributo; as leituras seguintes pegam o valor direto, sem chamar o método. Diferente de `@property`, ele também aceita atribuição." },
+    { "tipo": "p", "texto": "Para limpar o cache, apague o atributo com `del`. Na próxima leitura o método roda de novo. Requisito: a instância precisa ter um `__dict__` mutável, então não funciona em classes com `__slots__` sem `__dict__`." },
+    { "tipo": "h2", "texto": "Exemplo prático" },
+    { "tipo": "code", "texto": "from functools import cached_property\nimport statistics\n\nclass Notas:\n    def __init__(self, valores):\n        self._valores = tuple(valores)\n\n    @cached_property\n    def desvio(self):\n        print(\"calculando...\")\n        return statistics.stdev(self._valores)\n\nn = Notas([7, 8, 6, 9])\nprint(n.desvio)  # imprime 'calculando...' e o valor\nprint(n.desvio)  # só o valor, vindo do cache\ndel n.desvio     # limpa o cache\nprint(n.desvio)  # calcula de novo" },
+    { "tipo": "callout", "titulo": "Para levar", "texto": "Use `cached_property` para valores caros de objetos que praticamente não mudam. Se os dados mudarem, apague o atributo com `del`. Em código com threads, o getter pode rodar mais de uma vez: desde o Python 3.12 não há mais o lock interno que existia antes." }
+  ],
+  "fontes": [
+    { "titulo": "Documentação do Python: functools (cached_property)", "url": "https://docs.python.org/3/library/functools.html" }
+  ]
+}
